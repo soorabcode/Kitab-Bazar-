@@ -29,4 +29,4 @@ A beautiful, responsive online bookstore website with Meesho-style aesthetics an
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/kitab-bazar.git
+git clone https://github.com/soorabcode/Kitab-Bazar-/.git
