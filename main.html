@@ -3,278 +3,219 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Kitab Bazar - Your Online Bookstore">
-    <meta name="keywords" content="books, bookstore, online shopping, fiction, non-fiction, science, history">
-    <meta name="author" content="Kitab Bazar">
-    <title>Kitab Bazar - Your Online Bookstore</title>
+    <title>Kitab Bazar - Premium Books Online</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loading-screen">
-        <div class="loading-content">
-            <div class="book-loader">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="#9787F3" stroke-width="2"/>
-                    <path d="M7 7H17" stroke="#9787F3" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M7 11H17" stroke="#9787F3" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M7 15H13" stroke="#9787F3" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-            </div>
-            <p>Loading Kitab Bazar...</p>
-        </div>
-    </div>
-
     <!-- Top Navigation Bar -->
-    <nav class="top-nav" id="top-nav">
-        <div class="nav-left">
-            <div class="logo-container">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="#9787F3" stroke-width="2"/>
-                    <path d="M7 7H17" stroke="#9787F3" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M7 11H17" stroke="#9787F3" stroke-width="2" stroke-linecap="round"/>
-                    <path d="M7 15H13" stroke="#9787F3" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+    <header class="top-navbar">
+        <div class="logo-container">
+            <div class="book-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <h1 class="site-title">Kitab Bazar</h1>
+        </div>
+        <div class="nav-icons">
+            <div class="search-container">
+                <input type="text" id="search-bar" placeholder="Search books...">
+                <i class="fas fa-search search-icon"></i>
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <div class="cart-icon" id="cart-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge" id="cart-count">0</span>
+            </div>
+            <div class="menu-icon" id="menu-toggle">
+                <i class="fas fa-bars"></i>
             </div>
         </div>
-        <div class="nav-center">
-            <span class="site-title">KITAB BAZAR</span>
-        </div>
-        <div class="nav-right">
-            <button class="nav-icon" id="search-icon" aria-label="Search">
-                <i class="fas fa-search"></i>
-            </button>
-            <button class="nav-icon" id="wishlist-icon" aria-label="Wishlist">
-                <i class="fas fa-heart"></i>
-                <span class="wishlist-count">0</span>
-            </button>
-            <button class="nav-icon" id="cart-icon" aria-label="Cart">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="cart-count">0</span>
-            </button>
-            <button class="nav-icon" id="menu-icon" aria-label="Menu">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
+    </header>
 
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobile-menu">
         <div class="menu-content">
-            <div class="menu-header">
-                <button class="close-menu" id="close-menu">&times;</button>
-                <h3>Menu</h3>
+            <div class="close-menu">
+                <i class="fas fa-times"></i>
             </div>
-            <div class="menu-section">
-                <h4>Navigation</h4>
-                <a href="#home" class="menu-item">
-                    <i class="fas fa-home"></i>
-                    Home
-                </a>
-                <a href="#categories" class="menu-item">
-                    <i class="fas fa-book"></i>
-                    Categories
-                </a>
-                <a href="#deals" class="menu-item">
-                    <i class="fas fa-tag"></i>
-                    Deals
-                </a>
-            </div>
-            <div class="menu-section">
-                <h4>Support</h4>
-                <a href="#about" class="menu-item">
-                    <i class="fas fa-info-circle"></i>
-                    About Us
-                </a>
-                <a href="#contact" class="menu-item">
-                    <i class="fas fa-envelope"></i>
-                    Contact Us
-                </a>
-                <a href="#faqs" class="menu-item">
-                    <i class="fas fa-question-circle"></i>
-                    FAQs
-                </a>
-                <a href="#refund" class="menu-item">
-                    <i class="fas fa-undo"></i>
-                    Refund Policy
-                </a>
-            </div>
+            <nav>
+                <ul>
+                    <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-heart"></i> Wishlist</a></li>
+                    <li><a href="#"><i class="fas fa-user"></i> My Account</a></li>
+                    <li><a href="#"><i class="fas fa-question-circle"></i> FAQs</a></li>
+                    <li><a href="#"><i class="fas fa-shield-alt"></i> Refund Policy</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> Contact Us</a></li>
+                    <li><a href="#"><i class="fas fa-info-circle"></i> About Us</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
 
-    <!-- Search Modal -->
-    <div class="search-modal" id="search-modal">
-        <div class="search-content">
-            <div class="search-header">
-                <input type="text" id="search-input" placeholder="Search for books, authors, or categories..." autocomplete="off">
-                <button class="close-search" id="close-search">&times;</button>
+    <!-- Main Content -->
+    <main>
+        <section class="hero-section">
+            <div class="hero-content">
+                <h2>Discover Your Next Favorite Book</h2>
+                <p>Explore our curated collection of bestsellers and classics</p>
+                <button class="cta-button">Shop Now</button>
             </div>
-            <div class="search-results" id="search-results">
-                <!-- Search results will appear here -->
-            </div>
-            <div class="search-suggestions" id="search-suggestions">
-                <h4>Popular Searches</h4>
-                <div class="suggestions-list">
-                    <span class="suggestion-tag" data-search="fiction">Fiction</span>
-                    <span class="suggestion-tag" data-search="non-fiction">Non-Fiction</span>
-                    <span class="suggestion-tag" data-search="science">Science</span>
-                    <span class="suggestion-tag" data-search="history">History</span>
-                    <span class="suggestion-tag" data-search="biography">Biography</span>
+        </section>
+
+        <section class="shop-section">
+            <div class="section-header">
+                <h2>Featured Books</h2>
+                <div class="filter-sort">
+                    <select id="sort-options">
+                        <option value="featured">Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="newest">Newest Arrivals</option>
+                    </select>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="products-grid" id="products-container">
+                <!-- Products will be dynamically loaded here -->
+            </div>
+        </section>
+
+        <section class="categories-section">
+            <h2>Browse by Category</h2>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <i class="fas fa-brain category-icon"></i>
+                    <h3>Self-Help</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-robot category-icon"></i>
+                    <h3>AI & Tech</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-signal category-icon"></i>
+                    <h3>Signal Processing</h3>
+                </div>
+                <div class="category-card">
+                    <i class="fas fa-infinity category-icon"></i>
+                    <h3>Mathematics</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <nav class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#" class="nav-item" id="bottom-search">
+            <i class="fas fa-search"></i>
+            <span>Search</span>
+        </a>
+        <a href="#" class="nav-item" id="bottom-wishlist">
+            <i class="fas fa-heart"></i>
+            <span>Wishlist</span>
+            <span class="badge" id="wishlist-count">0</span>
+        </a>
+        <a href="#" class="nav-item" id="bottom-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <span>Cart</span>
+            <span class="badge" id="bottom-cart-count">0</span>
+        </a>
+        <a href="#" class="nav-item" id="bottom-menu">
+            <i class="fas fa-ellipsis-h"></i>
+            <span>More</span>
+        </a>
+    </nav>
 
     <!-- Cart Modal -->
     <div class="cart-modal" id="cart-modal">
         <div class="cart-content">
             <div class="cart-header">
-                <h3>Shopping Cart (<span id="cart-count-display">0</span>)</h3>
-                <button class="close-cart" id="close-cart">&times;</button>
+                <h3>Your Cart</h3>
+                <i class="fas fa-times close-cart"></i>
             </div>
-            <div class="cart-items" id="cart-items">
-                <!-- Cart items will be added here dynamically -->
-            </div>
-            <div class="cart-summary">
-                <div class="cart-subtotal">
-                    <span>Subtotal:</span>
-                    <span class="price" id="cart-subtotal">$0.00</span>
+            <div class="cart-items" id="cart-items-container">
+                <!-- Cart items will be dynamically loaded here -->
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-basket"></i>
+                    <p>Your cart is empty</p>
                 </div>
+            </div>
+            <div class="cart-footer">
                 <div class="cart-total">
                     <span>Total:</span>
-                    <span class="price total-price" id="cart-total">$0.00</span>
+                    <span id="cart-total">₹0</span>
                 </div>
-            </div>
-            <div class="cart-actions">
-                <button class="btn btn-secondary" id="continue-shopping">Continue Shopping</button>
-                <button class="btn btn-primary" id="proceed-checkout">Proceed to Checkout</button>
+                <button class="checkout-btn">Checkout</button>
             </div>
         </div>
     </div>
-
-    <!-- Wishlist Modal -->
-    <div class="wishlist-modal" id="wishlist-modal">
-        <div class="wishlist-content">
-            <div class="wishlist-header">
-                <h3>Wishlist (<span id="wishlist-count-display">0</span>)</h3>
-                <button class="close-wishlist" id="close-wishlist">&times;</button>
-            </div>
-            <div class="wishlist-items" id="wishlist-items">
-                <!-- Wishlist items will be added here dynamically -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="hero-text">
-                <h1>Discover Your Next Favorite Book</h1>
-                <p>Explore thousands of books from various genres at the best prices</p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary btn-large" id="explore-books">Explore Books</button>
-                    <button class="btn btn-secondary btn-large" id="view-deals">View Deals</button>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="book-stack">
-                    <div class="book book-1"></div>
-                    <div class="book book-2"></div>
-                    <div class="book book-3"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Categories Section -->
-    <section class="categories-section">
-        <div class="container">
-            <h2 class="section-title">Browse Categories</h2>
-            <div class="categories-grid" id="categories-grid">
-                <!-- Categories will be added here dynamically -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Featured Books Section -->
-    <section class="featured-section">
-        <div class="container">
-            <h2 class="section-title">Featured Books</h2>
-            <div class="book-grid" id="book-grid">
-                <!-- Books will be added here dynamically -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Bottom Navigation Bar -->
-    <nav class="bottom-nav">
-        <a href="#home" class="nav-item active">
-            <i class="fas fa-home"></i>
-            <span>Home</span>
-        </a>
-        <a href="#categories" class="nav-item">
-            <i class="fas fa-book"></i>
-            <span>Books</span>
-        </a>
-        <a href="#deals" class="nav-item">
-            <i class="fas fa-tag"></i>
-            <span>Deals</span>
-        </a>
-        <a href="#cart" class="nav-item" id="bottom-cart">
-            <i class="fas fa-shopping-cart"></i>
-            <span>Cart</span>
-            <span class="nav-cart-count">0</span>
-        </a>
-        <a href="#profile" class="nav-item">
-            <i class="fas fa-user"></i>
-            <span>Account</span>
-        </a>
-    </nav>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-section">
-                    <div class="footer-logo">
-                        <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M19 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z" stroke="#9787F3" stroke-width="2"/>
-                            <path d="M7 7H17" stroke="#9787F3" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M7 11H17" stroke="#9787F3" stroke-width="2" stroke-linecap="round"/>
-                            <path d="M7 15H13" stroke="#9787F3" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <h3>Kitab Bazar</h3>
-                    </div>
-                    <p>Your trusted online bookstore with the best collection of books at affordable prices.</p>
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>Kitab Bazar</h3>
+                <p>Premium books for readers and learners. Quality literature delivered to your doorstep.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
                 </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                        <li><a href="#faq">FAQs</a></li>
-                        <li><a href="#terms">Terms & Conditions</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact Info</h4>
-                    <div class="contact-info">
-                        <p><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal</p>
-                        <p><i class="fas fa-phone"></i> +977-98XXXXXXXX</p>
-                        <p><i class="fas fa-envelope"></i> info@kitabbazar.com</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                    <li><a href="#">Shipping Policy</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Self-Help</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">Academic</a></li>
+                    <li><a href="#">Fiction</a></li>
+                    <li><a href="#">Business</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Book Street, Mumbai, India</li>
+                    <li><i class="fas fa-phone"></i> +91 98765 43210</li>
+                    <li><i class="fas fa-envelope"></i> support@kitabbazar.com</li>
+                </ul>
+                <div class="payment-methods">
+                    <span>Payment Methods:</span>
+                    <div class="payment-icons">
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fab fa-cc-amazon-pay"></i>
+                        <i class="fab fa-cc-paypal"></i>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Kitab Bazar. All rights reserved.</p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Kitab Bazar. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Sitemap</a>
             </div>
         </div>
     </footer>
-
-    <!-- Toast Notifications -->
-    <div class="toast-container" id="toast-container"></div>
 
     <script src="script.js"></script>
 </body>
