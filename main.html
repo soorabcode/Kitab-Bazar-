@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kitab Bazar</title>
+    <title>Kitab Bazar </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -39,10 +39,10 @@
     <!-- Menu Dropdown -->
     <div class="menu-dropdown" id="menu-dropdown">
         <ul>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Refund Policy</a></li>
-            <li><a href="#">FAQs</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#refund">Refund Policy</a></li>
+            <li><a href="#faqs">FAQs</a></li>
         </ul>
     </div>
 
@@ -75,6 +75,35 @@
         </div>
     </main>
 
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <h2>What Our Readers Say</h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-item">
+                <p>"Kitab Bazar has transformed my reading habits. The selection is incredible!"</p>
+                <h4>- Sarah Johnson</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"Fast shipping and excellent customer service. Highly recommended!"</p>
+                <h4>- Michael Chen</h4>
+            </div>
+            <div class="testimonial-item">
+                <p>"I love the personalized recommendations. Always find great books here."</p>
+                <h4>- Emily Davis</h4>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Section -->
+    <section class="newsletter-section">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for the latest book releases and exclusive offers.</p>
+        <div class="newsletter-form">
+            <input type="email" id="newsletter-email" placeholder="Enter your email">
+            <button id="newsletter-btn">Subscribe</button>
+        </div>
+    </section>
+
     <!-- Cart/Checkout Modal -->
     <div class="modal" id="cart-modal">
         <div class="modal-content">
@@ -90,7 +119,7 @@
                 <div class="step active" id="step-1">
                     <h3>Your Cart</h3>
                     <div id="cart-items"></div>
-                    <p id="cart-total">Total: $0</p>
+                    <p id="cart-total">Total: $0.00</p>
                     <button id="next-to-shipping">Next: Shipping</button>
                 </div>
                 <div class="step" id="step-2">
@@ -130,43 +159,784 @@
         </div>
     </div>
 
-    <!-- Bottom Navigation Bar (visible on mobile) -->
+    <!-- Login/Signup Modal -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content auth-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+            <div class="auth-forms">
+                <form class="auth-form active" id="login-form">
+                    <h2>Welcome Back</h2>
+                    <div class="form-group">
+                        <input type="email" id="login-email" placeholder="Email" required>
+                        <span class="error-message" id="login-email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="login-password" placeholder="Password" required>
+                        <span class="error-message" id="login-password-error"></span>
+                    </div>
+                    <div class="form-options">
+                        <label><input type="checkbox" id="remember-me"> Remember me</label>
+                        <a href="#" id="forgot-password">Forgot password?</a>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Login</button>
+                </form>
+                <form class="auth-form" id="signup-form">
+                    <h2>Join Kitab Bazar</h2>
+                    <div class="form-group">
+                        <input type="text" id="signup-name" placeholder="Full Name" required>
+                        <span class="error-message" id="signup-name-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="signup-email" placeholder="Email" required>
+                        <span class="error-message" id="signup-email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signup-password" placeholder="Password" required>
+                        <span class="error-message" id="signup-password-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signup-confirm-password" placeholder="Confirm Password" required>
+                        <span class="error-message" id="signup-confirm-error"></span>
+                    </div>
+                    <div class="form-options">
+                        <label><input type="checkbox" id="agree-terms" required> I agree to the <a href="#terms">Terms & Conditions</a></label>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal" id="profile-modal">
+        <div class="modal-content profile-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="profile-header">
+                <div class="profile-avatar-section">
+                    <div class="profile-avatar">
+                        <img id="profile-avatar-img" src="" alt="Profile Avatar" style="display: none;">
+                        <i class="fas fa-user-circle" id="profile-avatar-icon"></i>
+                        <button class="avatar-edit-btn" title="Change Avatar"><i class="fas fa-camera"></i></button>
+                        <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                    </div>
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" id="books-read">0</span>
+                            <span class="stat-label">Books Read</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="orders-count">0</span>
+                            <span class="stat-label">Orders</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="wishlist-count">0</span>
+                            <span class="stat-label">Wishlist</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" id="reviews-count">0</span>
+                            <span class="stat-label">Reviews</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-info">
+                    <h2 id="user-name">Welcome, Reader!</h2>
+                    <p id="user-email">Manage your account and preferences</p>
+                    <div class="user-status">
+                        <span class="status-badge" id="membership-status">Free Member</span>
+                        <span class="status-badge premium" id="premium-badge" style="display: none;">Premium</span>
+                    </div>
+                    <div class="profile-badges">
+                        <span class="badge" id="loyalty-badge">New Reader</span>
+                        <span class="badge" id="achievement-badge">First Purchase</span>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-dashboard">
+                <div class="dashboard-section">
+                    <h3><i class="fas fa-clock"></i> Recent Activity</h3>
+                    <div class="activity-list" id="recent-activity">
+                        <p class="no-activity">No recent activity</p>
+                    </div>
+                </div>
+                <div class="dashboard-section">
+                    <h3><i class="fas fa-target"></i> Reading Goals</h3>
+                    <div class="reading-goals">
+                        <div class="goal-item">
+                            <span class="goal-label">Books this month</span>
+                            <div class="goal-progress">
+                                <div class="progress-bar" style="width: 0%"></div>
+                                <span class="progress-text">0 / 5</span>
+                            </div>
+                        </div>
+                        <div class="goal-item">
+                            <span class="goal-label">Pages this week</span>
+                            <div class="goal-progress">
+                                <div class="progress-bar" style="width: 0%"></div>
+                                <span class="progress-text">0 / 200</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-section">
+                    <h3><i class="fas fa-chart-line"></i> Reading Stats</h3>
+                    <div class="reading-stats">
+                        <div class="stat-chart">
+                            <canvas id="reading-chart" width="200" height="100"></canvas>
+                        </div>
+                        <div class="stat-summary">
+                            <div class="summary-item">
+                                <span class="summary-label">Favorite Genre</span>
+                                <span class="summary-value" id="favorite-genre">Self-Help</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Avg. Rating Given</span>
+                                <span class="summary-value" id="avg-rating">4.5 ★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-options">
+                <button class="profile-btn" data-action="history"><i class="fas fa-shopping-bag"></i> Order History</button>
+                <button class="profile-btn" data-action="wishlist"><i class="fas fa-heart"></i> My Wishlist</button>
+                <button class="profile-btn" data-action="reviews"><i class="fas fa-star"></i> My Reviews</button>
+                <button class="profile-btn" data-action="settings"><i class="fas fa-cog"></i> Settings</button>
+                <button class="profile-btn" data-action="logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- About Us Modal -->
+    <div class="modal" id="about-modal">
+        <div class="modal-content about-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="about-header">
+                <div class="about-hero">
+                    <i class="fas fa-book-open about-icon animate-bounce"></i>
+                    <h2>About Kitab Bazar</h2>
+                    <p class="about-subtitle">Empowering minds through the magic of books</p>
+                </div>
+            </div>
+            <div class="about-content">
+                <div class="about-section animate-on-scroll">
+                    <div class="section-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="section-content">
+                        <h3>Our Story</h3>
+                        <p>Welcome to Kitab Bazar, your premier destination for discovering and purchasing inspiring books. Founded with a passion for literature, we believe in the power of knowledge and the transformative impact of great literature on people's lives. Our journey began with a simple idea: to make quality books accessible to everyone, everywhere.</p>
+                        <p>Since our inception, we've grown from a small local bookstore to a comprehensive online platform serving readers worldwide. Every book in our collection is carefully selected to ensure it meets our standards of excellence and relevance.</p>
+                    </div>
+                </div>
+                <div class="about-section animate-on-scroll">
+                    <div class="section-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <div class="section-content">
+                        <h3>Our Mission</h3>
+                        <p>To connect readers with books that inspire, educate, and entertain. We curate a diverse collection spanning self-help, AI & ML, mathematics, signal processing, and more, ensuring there's something for every curious mind. Our mission is to foster a love for reading and learning in an increasingly digital world.</p>
+                    </div>
+                </div>
+                <div class="about-section animate-on-scroll">
+                    <div class="section-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <div class="section-content">
+                        <h3>Our Vision</h3>
+                        <p>To become the world's most trusted online bookstore, fostering a global community of lifelong learners and creating positive change through the dissemination of knowledge. We envision a world where every person has access to the books that can change their lives.</p>
+                    </div>
+                </div>
+                <div class="about-timeline">
+                    <h3>Our Journey</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>2020</h4>
+                                <p>Kitab Bazar was founded with a vision to revolutionize online book shopping.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>2021</h4>
+                                <p>Expanded our collection to include specialized categories like AI & ML, Mathematics, and Signal Processing.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>2022</h4>
+                                <p>Launched our mobile app and introduced personalized reading recommendations.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>2023</h4>
+                                <p>Achieved 50,000+ happy readers and expanded to international shipping.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker"></div>
+                            <div class="timeline-content">
+                                <h4>2024</h4>
+                                <p>Introduced premium membership and enhanced user experience with advanced features.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-number">10,000+</div>
+                        <div class="stat-label">Books Available</div>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-number">50,000+</div>
+                        <div class="stat-label">Happy Readers</div>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Years of Service</div>
+                    </div>
+                    <div class="stat-card animate-on-scroll">
+                        <div class="stat-number">4.9</div>
+                        <div class="stat-label">Average Rating</div>
+                    </div>
+                </div>
+                <div class="about-section animate-on-scroll">
+                    <div class="section-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="section-content">
+                        <h3>Why Choose Us?</h3>
+                        <div class="features-grid">
+                            <div class="feature-item hover-lift">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Curated selection of quality books</span>
+                            </div>
+                            <div class="feature-item hover-lift">
+                                <i class="fas fa-truck"></i>
+                                <span>Fast and reliable shipping</span>
+                            </div>
+                            <div class="feature-item hover-lift">
+                                <i class="fas fa-headset"></i>
+                                <span>24/7 customer service</span>
+                            </div>
+                            <div class="feature-item hover-lift">
+                                <i class="fas fa-tags"></i>
+                                <span>Competitive pricing</span>
+                            </div>
+                            <div class="feature-item hover-lift">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Secure payment options</span>
+                            </div>
+                            <div class="feature-item hover-lift">
+                                <i class="fas fa-undo"></i>
+                                <span>30-day return policy</span>
+                            </div>
+                            <div class="feature-item hover-lift">
+                                <i class="fas fa-brain"></i>
+                                <span>Personalized recommendations</span>
+                            </div>
+                            <div class="feature-item hover-lift">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>Mobile-friendly experience</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-testimonials">
+                    <h3>What Our Readers Say</h3>
+                    <div class="testimonials-grid">
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <p>"Kitab Bazar has completely transformed my reading habits. The personalized recommendations are spot on!"</p>
+                            <div class="testimonial-author">
+                                <strong>Sarah Johnson</strong>
+                                <span>Verified Reader</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <p>"Amazing collection of technical books. Found exactly what I needed for my AI studies."</p>
+                            <div class="testimonial-author">
+                                <strong>Michael Chen</strong>
+                                <span>Computer Science Student</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-card">
+                            <div class="testimonial-rating">★★★★★</div>
+                            <p>"The customer service is exceptional. They helped me find rare mathematics books."</p>
+                            <div class="testimonial-author">
+                                <strong>Emily Davis</strong>
+                                <span>Mathematics Professor</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-team">
+                    <h3>Meet Our Team</h3>
+                    <div class="team-grid">
+                        <div class="team-member animate-on-scroll">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <h4>Saurab Gyawali</h4>
+                            <p>Founder & CEO</p>
+                            <p class="member-bio">Passionate about connecting readers with transformative books. Leading the vision for a book-loving world.</p>
+                            <div class="member-social">
+                                <a href="https://www.linkedin.com/in/saurab-gyawali-420897233" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                                <a href="https://www.instagram.com/saurab_gyawalii" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+                                <a href="mailto:saurabgyawali77@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        <div class="team-member animate-on-scroll">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <h4>Content Curator</h4>
+                            <p>Book Selection Specialist</p>
+                            <p class="member-bio">Expert in literature curation, ensuring every book meets our quality standards.</p>
+                            <div class="member-social">
+                                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <div class="team-member animate-on-scroll">
+                            <div class="member-avatar">
+                                <i class="fas fa-user-cog"></i>
+                            </div>
+                            <h4>Tech Team</h4>
+                            <p>Development & Support</p>
+                            <p class="member-bio">Building the technology that makes reading accessible and enjoyable for everyone.</p>
+                            <div class="member-social">
+                                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-cta">
+                    <h3>Ready to Start Your Reading Journey?</h3>
+                    <p>Join thousands of readers who trust Kitab Bazar for their literary needs.</p>
+                    <button class="cta-btn" onclick="document.querySelector('.shop-section').scrollIntoView({behavior: 'smooth'})">Explore Our Collection</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Us Modal -->
+    <div class="modal" id="contact-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>saurabgyawali77@gmail.com</p>
+                            <small>We'll respond within 24 hours</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-instagram"></i>
+                        <div>
+                            <h4>Instagram</h4>
+                            <p>@saurab_gyawalii</p>
+                            <small>Follow us for updates</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin-in"></i>
+                        <div>
+                            <h4>LinkedIn</h4>
+                            <p>Saurab Gyawali</p>
+                            <small>Connect professionally</small>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+1 (555) 123-4567</p>
+                            <small>Mon-Fri 9AM-6PM</small>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="contact-name" placeholder="Your Name" required>
+                        <span class="error-message" id="name-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="contact-email" placeholder="Your Email" required>
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <select id="contact-subject" required>
+                            <option value="">Select Subject</option>
+                            <option value="order">Order Inquiry</option>
+                            <option value="return">Return/Refund</option>
+                            <option value="support">Technical Support</option>
+                            <option value="feedback">Feedback</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="contact-message" placeholder="Your Message" rows="5" required></textarea>
+                        <span class="error-message" id="message-error"></span>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQs Modal -->
+    <div class="modal" id="faqs-modal">
+        <div class="modal-content faqs-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="faqs-header">
+                <i class="fas fa-question-circle faqs-icon animate-bounce"></i>
+                <h2>Frequently Asked Questions</h2>
+                <p>Find quick answers to common questions about our services</p>
+            </div>
+            <div class="faq-search">
+                <input type="text" id="faq-search" placeholder="Search FAQs...">
+                <i class="fas fa-search"></i>
+                <div class="search-results-count" id="search-results-count" style="display: none;">
+                    <span id="results-count">0</span> results found
+                </div>
+            </div>
+            <div class="faq-categories">
+                <button class="faq-category active" data-category="all"><i class="fas fa-th"></i> All</button>
+                <button class="faq-category" data-category="orders"><i class="fas fa-shopping-cart"></i> Orders</button>
+                <button class="faq-category" data-category="shipping"><i class="fas fa-truck"></i> Shipping</button>
+                <button class="faq-category" data-category="returns"><i class="fas fa-undo"></i> Returns</button>
+                <button class="faq-category" data-category="account"><i class="fas fa-user"></i> Account</button>
+                <button class="faq-category" data-category="payment"><i class="fas fa-credit-card"></i> Payment</button>
+                <button class="faq-category" data-category="technical"><i class="fas fa-cog"></i> Technical</button>
+            </div>
+            <div class="faqs-content">
+                <div class="faq-item" data-category="orders">
+                    <div class="faq-question">
+                        <h4>How do I place an order?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Add books to your cart by clicking the "Add to Cart" button on any book. You can view your cart by clicking the cart icon in the top navigation. Proceed to checkout, fill in your shipping and payment details, and complete your order.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="orders">
+                    <div class="faq-question">
+                        <h4>Can I modify my order after placing it?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Orders can be modified within 1 hour of placement. Contact our support team immediately at saurabgyawali77@gmail.com or call +1 (555) 123-4567. We'll help you make the necessary changes.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="orders">
+                    <div class="faq-question">
+                        <h4>What payment methods do you accept?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards (Visa, MasterCard, American Express), debit cards, PayPal, Apple Pay, Google Pay, and other digital payment methods. All transactions are secured with SSL encryption.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="shipping">
+                    <div class="faq-question">
+                        <h4>How long does shipping take?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Standard shipping takes 3-5 business days within the continental US. Express shipping (2-day) and overnight shipping are available for faster delivery. International shipping takes 7-14 business days depending on the destination.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="shipping">
+                    <div class="faq-question">
+                        <h4>Do you offer international shipping?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We ship to over 100 countries worldwide. International shipping rates vary by destination and order weight. Free international shipping on orders over $100.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="shipping">
+                    <div class="faq-question">
+                        <h4>How much does shipping cost?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Free shipping on orders over $50 within the US. Standard shipping is $5.99, express is $12.99, and overnight is $24.99. International shipping starts at $15.99.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="returns">
+                    <div class="faq-question">
+                        <h4>Can I return a book?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we offer a 30-day return policy for unused books in their original condition with all packaging and accessories included. Digital downloads and personalized items are not eligible for return.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="returns">
+                    <div class="faq-question">
+                        <h4>How do I initiate a return?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Contact our customer service team at returns@kitabbazar.com or call +1 (555) 123-4567 to get a return authorization number. We'll provide prepaid shipping labels and instructions.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="returns">
+                    <div class="faq-question">
+                        <h4>Are there any items that cannot be returned?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Digital downloads, e-books, personalized items, and books damaged by the customer are not eligible for return. All other physical books can be returned within 30 days.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="account">
+                    <div class="faq-question">
+                        <h4>How do I create an account?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Click the profile icon in the top navigation or bottom menu, then select "Sign Up". Fill in your details and you'll have access to order history, wishlist management, and personalized recommendations.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="account">
+                    <div class="faq-question">
+                        <h4>How do I reset my password?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Use the "Forgot Password" link on the login page. Enter your email address and we'll send you a secure link to reset your password within minutes.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="account">
+                    <div class="faq-question">
+                        <h4>Can I change my account information?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, go to your Profile > Settings to update your personal information, email preferences, and account details. Changes are saved automatically.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="payment">
+                    <div class="faq-question">
+                        <h4>Is my payment information secure?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! We use industry-standard SSL encryption and PCI DSS compliant payment processing. Your payment information is never stored on our servers and is protected by bank-level security.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h4>The website isn't loading properly. What should I do?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Try clearing your browser cache and cookies, or try a different browser. If the issue persists, contact our technical support team. We're here to help!</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item" data-category="technical">
+                    <div class="faq-question">
+                        <h4>Can I access Kitab Bazar on my mobile device?</h4>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Our website is fully responsive and optimized for mobile devices. We also have a dedicated mobile app available for iOS and Android with enhanced features.</p>
+                        <div class="helpful">
+                            <span>Was this helpful?</span>
+                            <button class="helpful-btn" data-type="yes"><i class="fas fa-thumbs-up"></i> Yes</button>
+                            <button class="helpful-btn" data-type="no"><i class="fas fa-thumbs-down"></i> No</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="faqs-footer">
+                <div class="faq-stats">
+                    <div class="stat">
+                        <span class="stat-number">98%</span>
+                        <span class="stat-label">Customer Satisfaction</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24/7</span>
+                        <span class="stat-label">Support Available</span>
+                    </div>
+                </div>
+                <p>Still have questions? <a href="#contact" onclick="document.getElementById('faqs-modal').style.display='none'; document.getElementById('contact-modal').style.display='flex';">Contact us</a> directly or call +1 (555) 123-4567.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Return Policy Modal -->
+    <div class="modal" id="return-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Return Policy</h2>
+            <div class="return-content">
+                <div class="return-step">
+                    <div class="step-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="step-content">
+                        <h3>30-Day Return Guarantee</h3>
+                        <p>We want you to be completely satisfied with your purchase. If you're not happy with your book, you can return it within 30 days for a full refund.</p>
+                    </div>
+                </div>
+                <div class="return-step">
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="step-content">
+                        <h3>Return Conditions</h3>
+                        <ul>
+                            <li>Book must be in original condition</li>
+                            <li>Include all original packaging and accessories</li>
+                            <li>Return shipping costs are the responsibility of the customer</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="return-step">
+                    <div class="step-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="step-content">
+                        <h3>How to Return</h3>
+                        <p>Contact our customer service team to initiate a return. We'll provide you with a return authorization and shipping instructions.</p>
+                        <div class="contact-info">
+                            <p><strong>Email:</strong> returns@kitabbazar.com</p>
+                            <p><strong>Phone:</strong> +1 (555) 123-4567</p>
+                            <p><strong>Hours:</strong> Mon-Fri 9AM-6PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="return-step">
+                    <div class="step-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="step-content">
+                        <h3>Processing Time</h3>
+                        <p>Once we receive your return, it typically takes 5-7 business days to process your refund. Refunds will be issued to your original payment method.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div class="modal" id="feedback-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Give Us Feedback</h2>
+            <form class="feedback-form">
+                <div class="rating-section">
+                    <label>How would you rate your experience?</label>
+                    <div class="rating-stars">
+                        <input type="radio" id="star5" name="rating" value="5"><label for="star5">★</label>
+                        <input type="radio" id="star4" name="rating" value="4"><label for="star4">★</label>
+                        <input type="radio" id="star3" name="rating" value="3"><label for="star3">★</label>
+                        <input type="radio" id="star2" name="rating" value="2"><label for="star2">★</label>
+                        <input type="radio" id="star1" name="rating" value="1"><label for="star1">★</label>
+                    </div>
+                </div>
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea placeholder="Your feedback helps us improve..." rows="5" required></textarea>
+                <button type="submit" class="submit-btn">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation Bar -->
     <nav class="bottom-nav">
-        <a href="#" class="bottom-icon"><i class="fas fa-home"></i><span>Home</span></a>
-        <a href="#" class="bottom-icon"><i class="fas fa-store"></i><span>Shop</span></a>
+        <a href="#" class="bottom-icon active" id="bottom-home"><i class="fas fa-home"></i><span>Home</span></a>
+        <a href="#" class="bottom-icon" id="bottom-shop"><i class="fas fa-store"></i><span>Shop</span></a>
         <a href="#" class="bottom-icon" id="bottom-wishlist"><i class="fas fa-heart"></i><span>Wishlist</span><span class="wishlist-count">0</span></a>
         <a href="#" class="bottom-icon" id="bottom-cart"><i class="fas fa-shopping-cart"></i><span>Cart</span><span class="cart-count">0</span></a>
-        <a href="#" class="bottom-icon"><i class="fas fa-user"></i><span>Profile</span></a>
+        <a href="#" class="bottom-icon" id="bottom-profile"><i class="fas fa-user"></i><span>Profile</span></a>
     </nav>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials-section">
-        <h2>What Our Readers Say</h2>
-        <div class="testimonials-grid">
-            <div class="testimonial-item">
-                <p>"Kitab Bazar has transformed my reading habits. The selection is incredible!"</p>
-                <h4>- Sarah Johnson</h4>
-            </div>
-            <div class="testimonial-item">
-                <p>"Fast shipping and excellent customer service. Highly recommended!"</p>
-                <h4>- Michael Chen</h4>
-            </div>
-            <div class="testimonial-item">
-                <p>"I love the personalized recommendations. Always find great books here."</p>
-                <h4>- Emily Davis</h4>
-            </div>
-        </div>
-    </section>
-
-    <!-- Newsletter Section -->
-    <section class="newsletter-section">
-        <h2>Stay Updated</h2>
-        <p>Subscribe to our newsletter for the latest book releases and exclusive offers.</p>
-        <div class="newsletter-form">
-            <input type="email" id="newsletter-email" placeholder="Enter your email">
-            <button id="newsletter-btn">Subscribe</button>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -174,32 +944,49 @@
             <div class="footer-section">
                 <h3>Kitab Bazar</h3>
                 <p>Your one-stop shop for inspiring books.</p>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/saurab_gyawalii" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/saurab-gyawali-420897233" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                    <a href="mailto:saurabgyawali77@gmail.com">
+                        <i class="fas fa-envelope"></i>
+                        <span>Email</span>
+                    </a>
+                    <a href="https://youtu.be/5lItY7HXKRU" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                        <span>YouTube</span>
+                    </a>
+                </div>
             </div>
             <div class="footer-section">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                    <li><a href="#about">About Us</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h3>Policy</h3>
                 <ul>
-                    <li><a href="#">Refund Policy</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#refund">Refund Policy</a></li>
+                    <li><a href="#faqs">FAQs</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="#terms">Terms of Service</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <h3>Newsletter</h3>
+                <p>Subscribe for updates</p>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button>Subscribe</button>
                 </div>
             </div>
         </div>
@@ -209,3 +996,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
