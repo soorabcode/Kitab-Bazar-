@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kitab Bazar - Admin Panel</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="logo">
+                <i class="fas fa-book"></i>
+                <h1>Kitab Bazar Admin</h1>
+            </div>
+            <div class="admin-info">
+                <span>Welcome, Admin</span>
+                <button id="logout-btn" class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <nav class="admin-nav">
+            <button class="nav-btn active" data-section="dashboard">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </button>
+            <button class="nav-btn" data-section="books">
+                <i class="fas fa-book"></i> Manage Books
+            </button>
+            <button class="nav-btn" data-section="add-book">
+                <i class="fas fa-plus"></i> Add New Book
+            </button>
+        </nav>
+
+        <main class="admin-main">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="admin-section active">
+                <h2>Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="fas fa-book"></i>
+                        <div class="stat-info">
+                            <h3 id="total-books">0</h3>
+                            <p>Total Books</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-th"></i>
+                        <div class="stat-info">
+                            <h3 id="total-categories">4</h3>
+                            <p>Categories</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-star"></i>
+                        <div class="stat-info">
+                            <h3 id="avg-rating">4.6</h3>
+                            <p>Average Rating</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-upload"></i>
+                        <div class="stat-info">
+                            <h3 id="recent-uploads">0</h3>
+                            <p>Recent Uploads</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <div id="activity-list" class="activity-list">
+                        <!-- Activity items will be populated here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Manage Books Section -->
+            <section id="books" class="admin-section">
+                <h2>Manage Books</h2>
+                <div class="books-controls">
+                    <input type="text" id="search-books" placeholder="Search books..." class="search-input">
+                    <select id="filter-category" class="filter-select">
+                        <option value="">All Categories</option>
+                        <option value="self-help">Self-Help</option>
+                        <option value="ai">AI & ML</option>
+                        <option value="signal">Signal Processing</option>
+                        <option value="math">Mathematics</option>
+                    </select>
+                </div>
+                <div id="books-list" class="books-list">
+                    <!-- Books will be populated here -->
+                </div>
+            </section>
+
+            <!-- Add Book Section -->
+            <section id="add-book" class="admin-section">
+                <h2>Add New Book</h2>
+                <form id="add-book-form" class="book-form" enctype="multipart/form-data">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="book-title">Title *</label>
+                            <input type="text" id="book-title" name="title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="book-author">Author *</label>
+                            <input type="text" id="book-author" name="author" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="book-price">Price ($) *</label>
+                            <input type="number" id="book-price" name="price" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="book-category">Category *</label>
+                            <select id="book-category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="self-help">Self-Help</option>
+                                <option value="ai">AI & ML</option>
+                                <option value="signal">Signal Processing</option>
+                                <option value="math">Mathematics</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="book-rating">Rating (1-5)</label>
+                            <input type="number" id="book-rating" name="rating" step="0.1" min="1" max="5" value="4.0">
+                        </div>
+                        <div class="form-group">
+                            <label for="book-image">Book Cover Image *</label>
+                            <input type="file" id="book-image" name="image" accept="image/*" required>
+                            <div class="image-preview">
+                                <img id="image-preview" src="" alt="Preview" style="display: none;">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-plus"></i> Add Book
+                        </button>
+                        <button type="button" id="clear-form" class="clear-btn">
+                            <i class="fas fa-eraser"></i> Clear Form
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Book Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Edit Book</h2>
+            <form id="edit-book-form" class="book-form" enctype="multipart/form-data">
+                <input type="hidden" id="edit-book-id" name="id">
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-book-title">Title *</label>
+                        <input type="text" id="edit-book-title" name="title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-book-author">Author *</label>
+                        <input type="text" id="edit-book-author" name="author" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-book-price">Price ($) *</label>
+                        <input type="number" id="edit-book-price" name="price" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-book-category">Category *</label>
+                        <select id="edit-book-category" name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="self-help">Self-Help</option>
+                            <option value="ai">AI & ML</option>
+                            <option value="signal">Signal Processing</option>
+                            <option value="math">Mathematics</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="edit-book-rating">Rating (1-5)</label>
+                        <input type="number" id="edit-book-rating" name="rating" step="0.1" min="1" max="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-book-image">Book Cover Image</label>
+                        <input type="file" id="edit-book-image" name="image" accept="image/*">
+                        <div class="image-preview">
+                            <img id="edit-image-preview" src="" alt="Preview">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-save"></i> Update Book
+                    </button>
+                    <button type="button" id="cancel-edit" class="cancel-btn">
+                        <i class="fas fa-times"></i> Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content small-modal">
+            <span class="close-modal">&times;</span>
+            <h2>Confirm Delete</h2>
+            <p>Are you sure you want to delete "<span id="delete-book-title"></span>"?</p>
+            <p class="warning-text">This action cannot be undone.</p>
+            <div class="modal-actions">
+                <button id="confirm-delete" class="delete-btn">
+                    <i class="fas fa-trash"></i> Delete
+                </button>
+                <button id="cancel-delete" class="cancel-btn">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
